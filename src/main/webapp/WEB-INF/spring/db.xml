@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+       <!-- Instructs Spring to perform declarative transaction management on annotated classes -->
+       <tx:annotation-driven transaction-manager="transactionManager"/>
+
+       <!-- Drives transactions-->
+       <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+              <property name="dataSource" ref="dataSource"/>
+              <property name="entityManagerFactory" ref="entityManagerFactory"/>
+       </bean>
+
+       <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+              <property name="dataSource" ref="dataSource"/>
+              <property name="jpaVendorAdapter">
+                     <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+              </property>
+              <property name="packagesToScan" value="ru.teamlabs.passbook.model"/>
+              <property name="jpaProperties">
+                     <props>
+                            <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+                            <prop key="hibernate.hbm2ddl.auto">no</prop>
+                            <prop key="hibernate.max_fetch_depth">3</prop>
+                            <prop key="hibernate.jdbc.fetch_size">50</prop>
+                            <prop key="hibernate.jdbc.batch_size">10</prop>
+                            <prop key="hibernate.show_sql">false</prop>
+                            <prop key="hibernate.format_sql">true</prop>
+                     </props>
+              </property>
+       </bean>
+
+       <jpa:repositories base-package="ru.teamlabs.passbook.repository"/>
+
+       <beans profile="dev">
+              <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+                     <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+                     <property name="url" value="jdbc:oracle:thin:@82.192.92.18:1521:una"/>
+                     <property name="username" value="AIR_DATA"/>
+                     <property name="password" value="wetS47NThD"/>
+                     <property name="validationQuery" value="SELECT 1 FROM DUAL"/>
+                     <property name="connectionInitSqls">
+                            <list>
+                                   <value>call DBMS_APPLICATION_INFO.SET_CLIENT_INFO('sly-rest-dev')</value>
+                            </list>
+                     </property>
+              </bean>
+       </beans>
+
+       <beans profile="test">
+              <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/oracle/air_data"/>
+       </beans>
+
+       <beans profile="prod">
+              <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/oracle/bat_data"/>
+       </beans>
+
+</beans>
