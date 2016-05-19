@@ -1,4 +1,4 @@
-package ru.teamlabs.utils.process;
+package ru.tonyware.utils.process;
 
 /**
  * Created by dark on 23.11.15.

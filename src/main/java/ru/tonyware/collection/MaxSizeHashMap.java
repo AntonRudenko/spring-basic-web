@@ -1,4 +1,4 @@
-package ru.teamlabs.collection;
+package ru.tonyware.collection;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

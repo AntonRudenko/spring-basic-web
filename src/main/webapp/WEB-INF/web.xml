@@ -3,7 +3,7 @@
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-    <display-name>Passbook server</display-name>
+    <display-name>Basic web project</display-name>
 
 
     <!-- The front controller of this Spring Web application, responsible for handling all application requests -->

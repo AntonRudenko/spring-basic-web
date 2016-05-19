@@ -1,4 +1,4 @@
-package ru.teamlabs.utils.file;
+package ru.tonyware.utils.file;
 
 import org.apache.commons.io.FilenameUtils;
 

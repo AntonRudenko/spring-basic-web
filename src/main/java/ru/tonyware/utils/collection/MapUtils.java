@@ -1,4 +1,4 @@
-package ru.teamlabs.utils.collection;
+package ru.tonyware.utils.collection;
 
 import java.util.HashMap;
 import java.util.Map;

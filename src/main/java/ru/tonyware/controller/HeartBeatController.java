@@ -1,4 +1,4 @@
-package ru.teamlabs.controller;
+package ru.tonyware.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

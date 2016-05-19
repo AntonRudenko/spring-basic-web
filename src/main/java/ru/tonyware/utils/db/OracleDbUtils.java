@@ -1,4 +1,4 @@
-package ru.teamlabs.utils.db;
+package ru.tonyware.utils.db;
 
 /**
  * Created by Anton Rudenko on 27.02.15.

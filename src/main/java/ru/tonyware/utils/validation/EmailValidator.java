@@ -1,4 +1,4 @@
-package ru.teamlabs.utils.validation;
+package ru.tonyware.utils.validation;
 
 import org.springframework.util.StringUtils;
 

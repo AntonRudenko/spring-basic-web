@@ -1,10 +1,10 @@
-package ru.teamlabs.utils.process;
+package ru.tonyware.utils.process;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.teamlabs.ProcessResult;
-import ru.teamlabs.utils.file.PathUtils;
+import ru.tonyware.ProcessResult;
+import ru.tonyware.utils.file.PathUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

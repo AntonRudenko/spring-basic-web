@@ -20,7 +20,7 @@
               <property name="jpaVendorAdapter">
                      <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
               </property>
-              <property name="packagesToScan" value="ru.teamlabs.passbook.model"/>
+              <property name="packagesToScan" value="ru.tonyware.passbook.model"/>
               <property name="jpaProperties">
                      <props>
                             <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
@@ -34,7 +34,7 @@
               </property>
        </bean>
 
-       <jpa:repositories base-package="ru.teamlabs.passbook.repository"/>
+       <jpa:repositories base-package="ru.tonyware.passbook.repository"/>
 
        <beans profile="dev">
               <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">

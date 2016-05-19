@@ -1,4 +1,4 @@
-package ru.teamlabs.utils.func;
+package ru.tonyware.utils.func;
 
 import java.util.Optional;
 
