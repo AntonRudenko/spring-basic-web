@@ -39,13 +39,13 @@
        <beans profile="dev">
               <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
                      <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-                     <property name="url" value="jdbc:oracle:thin:@82.192.92.18:1521:una"/>
-                     <property name="username" value="AIR_DATA"/>
-                     <property name="password" value="wetS47NThD"/>
+                     <property name="url" value="jdbc:oracle:thin:@192.168.1.1:una"/>
+                     <property name="username" value="test"/>
+                     <property name="password" value="test"/>
                      <property name="validationQuery" value="SELECT 1 FROM DUAL"/>
                      <property name="connectionInitSqls">
                             <list>
-                                   <value>call DBMS_APPLICATION_INFO.SET_CLIENT_INFO('sly-rest-dev')</value>
+                                   <value>call DBMS_APPLICATION_INFO.SET_CLIENT_INFO('sly-test-dev')</value>
                             </list>
                      </property>
               </bean>
