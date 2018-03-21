@@ -202,7 +202,7 @@
                         <spring.profiles.active>dev</spring.profiles.active>
                     </systemProperties>
                     <uriEncoding>UTF-8</uriEncoding>
-                    <path>/passbook</path>
+                    <path>/simpleWeb</path>
                     <port>8085</port>
                 </configuration>
                 <dependencies>
