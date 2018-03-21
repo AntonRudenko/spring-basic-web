@@ -7,7 +7,7 @@
            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
        <!-- Instructs Spring to perform declarative transaction management on annotated classes -->
-       <tx:annotation-driven transaction-manager="transactionManager"/>
+       <tx:annotation-driven/>
 
        <!-- Drives transactions-->
        <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
@@ -20,11 +20,11 @@
               <property name="jpaVendorAdapter">
                      <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
               </property>
-              <property name="packagesToScan" value="ru.tonyware.passbook.model"/>
+              <property name="packagesToScan" value="ru.tonyware.model"/>
               <property name="jpaProperties">
                      <props>
-                            <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
-                            <prop key="hibernate.hbm2ddl.auto">no</prop>
+                            <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+                            <prop key="hibernate.hbm2ddl.auto">create</prop>
                             <prop key="hibernate.max_fetch_depth">3</prop>
                             <prop key="hibernate.jdbc.fetch_size">50</prop>
                             <prop key="hibernate.jdbc.batch_size">10</prop>
@@ -34,29 +34,23 @@
               </property>
        </bean>
 
-       <jpa:repositories base-package="ru.tonyware.passbook.repository"/>
+       <jpa:repositories base-package="ru.tonyware.repository"/>
 
        <beans profile="dev">
               <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-                     <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-                     <property name="url" value="jdbc:oracle:thin:@192.168.1.1:una"/>
-                     <property name="username" value="test"/>
-                     <property name="password" value="test"/>
-                     <property name="validationQuery" value="SELECT 1 FROM DUAL"/>
-                     <property name="connectionInitSqls">
-                            <list>
-                                   <value>call DBMS_APPLICATION_INFO.SET_CLIENT_INFO('sly-test-dev')</value>
-                            </list>
-                     </property>
+                     <property name="driverClassName" value="org.h2.Driver"/>
+                     <property name="url" value="jdbc:h2:~/test"/>
+                     <property name="username" value="sa"/>
+                     <property name="password" value=""/>
               </bean>
        </beans>
 
        <beans profile="test">
-              <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/oracle/air_data"/>
+              <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/db"/>
        </beans>
 
        <beans profile="prod">
-              <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/oracle/bat_data"/>
+              <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/db_prod"/>
        </beans>
 
 </beans>
